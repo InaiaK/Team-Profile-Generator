@@ -4,6 +4,7 @@ class Employee {
         this.id=id
         this.email=email
     }
+    // get user inputs 
     getName(){
         return this.name
     }
@@ -17,5 +18,5 @@ class Employee {
         return "Employee"
     }
 }
-
+// exporting employee to be accessed. 
 module.exports = Employee;
