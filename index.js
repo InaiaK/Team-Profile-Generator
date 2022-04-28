@@ -1,9 +1,4 @@
-
-
-
-https://www.youtube.com/watch?v=31LhQkLcZvE
-
-const inquirer = require("inquirer");
+const inquirer =require("inquirer");
 
 const fs = require("fs");
 // create a markdown
@@ -102,52 +97,82 @@ employee.push(manager);
 };
 
 // engineer function + array of questions
-
-
-
-
-
-
-
-
-
-
-// create a function for each one
-
-const questions = (Employee) =>
-    inquirer.prompt([
+const createEngineer = async () => {
+    const engineerQuestions = [
         {
-            type: 'input',
-            message: 'What is your name',
-            name: 'name',
+            type:"input";
+            message:"Enter engineer name:",
+            name:"name",
+            validate:validateInput,
         },
         {
-            type: 'input',
-            message: 'What is your ID? ',
-            name: 'id',
+            type:"input",
+            message:"Enter engineer ID:",
+            name:"id",
+            validate:validateInput,
         },
         {
-            type: 'input',
-            message: `What is your e-mail ?`,
-            name: 'email'
+            type:"input",
+            message:"Enter engineer email:",
+            name:"email",
+            validate:validateInput,
         },
-    ]);
 
-const questions = (Engineer) =>
-    inquirer.prompt([
         {
-            type: 'input',
-            message: 'What is your name',
-            name: 'name',
+            type:"input",
+            message:"Enter engineer github profile:",
+            name:"github",
+            validate:validateInput,
+
+        },
+    ];
+
+    const engineerAnswers = await inquirer.prompt(engineerQuestions);
+    const engineer = new Engineer(engineerAnswers);
+    employee.push(engineer);
+};
+
+
+// intern function + array of questions 
+const createIntern = async () => {
+    const internQuestions = [
+        {
+            type:"input",
+            message:"Enter intern name:",
+            name:"name",
+            validate:validateInput,
         },
         {
-            type: 'input',
-            message: 'What is your ID? ',
-            name: 'id',
+            type:"input",
+            message:"Enter intern ID:",
+            name:"id",
+            validate:validateInput,
         },
         {
-            type: 'input',
-            message: `What is your e-mail ?`,
-            name: 'email'
+            type:"input",
+            message:"Enter intern email:",
+            name:"email",
+            validate:validateInput,
         },
-    ]);
+
+        {
+            type:"input",
+            message:"Enter intern school name:",
+            name:"school",
+            validate:validateInput,
+
+        },
+    ];
+
+    const internAnswers = await inquirer.prompt(internQuestions);
+    const intern = new Intern(internAnswers);
+    employee.push(intern);
+};
+
+// function call to start app
+
+init();
+
+
+
+
