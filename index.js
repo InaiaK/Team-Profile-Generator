@@ -37,7 +37,7 @@ const init = async () => {
     }
 }
 // employee object will be generated
-const { employeeType } = await inquirer.prompt(employeeTypeQuestion);
+const employeeType = await inquirer.prompt(employeeTypeQuestion);
 
 if (employeeType === "none") {
     isTeamComplete = true;
@@ -64,7 +64,7 @@ fs.writeFileSync("team profile.html",HTML,(err)=> {
 const createManager = async () =>{
     const managerQuestions =[
         {
-            type:"input";
+            type:"input",
             message:"Enter manager name:",
             name:"name",
             validate:validateInput,
@@ -100,7 +100,7 @@ employee.push(manager);
 const createEngineer = async () => {
     const engineerQuestions = [
         {
-            type:"input";
+            type:"input",
             message:"Enter engineer name:",
             name:"name",
             validate:validateInput,
