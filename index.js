@@ -55,8 +55,11 @@ const init = async () => {
 
 
 //employees array + any erros with writing to the file.
-const  generateHTML =(employee) =>{
-fs.writeFileSync("team profile.html", HTML, (err) => {
+const  generateHTML =async() =>{
+    console.log(employeeDB)
+let HTML = await generateHTMLTemplate(employeeDB)
+console.log(HTML)
+fs.writeFileSync("teamprofile.html", HTML, (err) => {
     if (err) {
         console.log(err);
     } else {
@@ -95,8 +98,8 @@ const createManager = async () => {
         },
     ];
 
-    const managerAnswers = await inquirer.prompt(managerQuestions);
-    const manager = new Manager(managerAnswers);
+    const{ name,id,email,officeNumber} = await inquirer.prompt(managerQuestions);
+    const manager = new Manager(name,id,email,officeNumber);
     employeeDB.push(manager);
 };
 
