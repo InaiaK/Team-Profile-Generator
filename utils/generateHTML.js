@@ -48,7 +48,7 @@ const renderEngineer = (engineer) => {
         <h5 class="card-title">"${engineer.getName()}</h5>
         <p class="card-text">ID:${engineer.getId()}</p>
         <p> E-mail: ${engineer.getEmail()}</p>
-       <p> Office Number ${engineer.getGithub()}</p>
+       <p> GitHub ${engineer.getGithub()}</p>
        <p>Role: ${engineer.getRole()}.</p>
       </div>
     </div>

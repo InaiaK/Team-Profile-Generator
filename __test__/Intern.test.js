@@ -1,3 +1,4 @@
+const { TestWatcher } = require('jest');
 const Intern = require('../library/Intern');
 
 describe('Intern', () => {

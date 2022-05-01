@@ -49,8 +49,6 @@ const init = async () => {
     })
 
 }
-// employee object will be generated
-// const employeeType = await inquirer.prompt(employeeTypeQuestion); // should I keep or delete await ????
 
 
 
