@@ -31,7 +31,7 @@ const init = async () => {
             choices: [
                 { name: "Engineer", value: "1", short: "Engineer" },
                 { name: "Intern", value: "2", short: "Intern" },
-                { name: "None", value: "3", short: "None" },
+                { name: "I don't want to add any more team member", value: "3", short: "None" },
             ],
         },
     ]).then(employee => {
@@ -100,7 +100,7 @@ const createManager = async () => {
 
     const{ name,id,email,officeNumber} = await inquirer.prompt(managerQuestions);
     const manager = new Manager(name,id,email,officeNumber);
-    employeeDB.push(manager);
+    employeeDB.push(manager); 
 };
 
 // engineer function + array of questions
@@ -134,8 +134,8 @@ const createEngineer = async () => {
         },
     ];
 
-    const engineerAnswers = await inquirer.prompt(engineerQuestions);
-    const engineer = new Engineer(engineerAnswers);
+    const {name,id,email,github}  = await inquirer.prompt(engineerQuestions);
+    const engineer = new Engineer(name,id,email,github);
     employeeDB.push(engineer);
     init()
 };
@@ -172,8 +172,8 @@ const createIntern = async () => {
         },
     ];
 
-    const internAnswers = await inquirer.prompt(internQuestions);
-    const intern = new Intern(internAnswers);
+    const {name,id,email,school} = await inquirer.prompt(internQuestions);
+    const intern = new Intern(name,id,email,school);
     employeeDB.push(intern);
     init()
 };

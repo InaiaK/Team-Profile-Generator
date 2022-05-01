@@ -1,70 +1,70 @@
 const fs = require("fs");
 const path = require("path");
-const templatesDir = path.resolve(__dirname,"../templates");
+const templatesDir = path.resolve(__dirname, "../templates");
 let template = ""
 
 const generateHTML = async (employees) => {
 
-    const HTML = [];
-// The objects in the employees array will be filtered by role.
+  const HTML = [];
+  // The objects in the employees array will be filtered by role.
 
-      await  employees.forEach(employee => {
-       if(employee.getRole() === "Manager"){
-        renderManager(employee)
-       }
-       else if( employee.getRole() === "Engineer")
-       renderEngineer(employee)
-  
-      else if (employee.getRole() === "Intern")
-       renderIntern(employee)
-      })
+  await employees.forEach(employee => {
+    if (employee.getRole() === "Manager") {
+      renderManager(employee)
+    }
+    else if (employee.getRole() === "Engineer")
+      renderEngineer(employee)
 
-    //console.log(HTML,"generateHTML.js");
-// he object in the html array are then joined & passed into the render full markdown.
-    return renderFullMarkdown();
+    else if (employee.getRole() === "Intern")
+      renderIntern(employee)
+  })
+
+  //console.log(HTML,"generateHTML.js");
+  // he object in the html array are then joined & passed into the render full markdown.
+  return renderFullMarkdown();
 };
 
 const renderManager = (manager) => {
-    console.log(manager)
-    // let maanger = manager.name
-    template +=` <div class="col mb-4">
+  console.log(manager)
+  // let maanger = manager.name
+  template += ` <div class="col mb-4">
     <div class="card">
       <div class="card-body">
-        <h5 class="card-title">"${manager.name}</h5>
-        <p class="card-text">ID:${manager.id}</p>
-       <p>E-mail: ${manager.email}</P>
-    <p>   Office Number ${manager.officeNumber}</p>
-       Role: ${manager.getRole}.</p>
+        <h5 class="card-title">"${manager.getName()}</h5>
+        <p class="card-text">ID:${manager.getId()}</p>
+       <p>E-mail: ${manager.getEmail()}</p>
+       <p>Office Number ${manager.getOfficeNumber()}</p>
+       <p>Role: ${manager.getRole()}.</p>
       </div>
     </div>
   </div>`
-   
+
 };
 
-const renderEngineer=(engineer)=>{
-     template += `<div class="col mb-4">
+const renderEngineer = (engineer) => {
+  template += `<div class="col mb-4">
     <div class="card">
       <div class="card-body">
         <h5 class="card-title">"${engineer.getName()}</h5>
         <p class="card-text">ID:${engineer.getId()}</p>
-       E-mail: ${engineer.getEmail()}
-       Office Number ${engineer.getGithub()}
-       Role: ${engineer.getRole()}.</p>
+        <p> E-mail: ${engineer.getEmail()}</p>
+       <p> Office Number ${engineer.getGithub()}</p>
+       <p>Role: ${engineer.getRole()}.</p>
       </div>
     </div>
   </div>`
 
 };
 
-const renderIntern=(intern)=>{
-     template +=`<div class="col mb-4">
+const renderIntern = (intern) => {
+  template += `<div class="col mb-4">
     <div class="card">
       <div class="card-body">
         <h5 class="card-title">"${intern.getName()}</h5>
         <p class="card-text">ID:${intern.getId()}</p>
-     <p>  E-mail: ${intern.getEmail()}</p>
- <p>   School Name: ${intern.getSchoolName()}</p><p>
-    <p>   Role: ${intern.getRole()}.</p>
+        <p>  E-mail: ${intern.getEmail()}</p>
+        <p>   School Name: ${intern.getSchoolName()}</p><p>
+        <p>   Role: ${intern.getRole()}.</p>
       </div>
     </div>
   </div>`
@@ -73,7 +73,7 @@ const renderIntern=(intern)=>{
 
 // render full markdown 
 const renderFullMarkdown = () => {
-   let fullHTML = `<!DOCTYPE html>
+  let fullHTML = `<!DOCTYPE html>
    <html lang="en">
    <head>
        <meta charset="UTF-8">
@@ -96,14 +96,14 @@ const renderFullMarkdown = () => {
        
    </body>
    </html>`
-   return fullHTML
+  return fullHTML
 };
 
 // replace templates function takes in the template, placeholder and value
 
-const replaceTemplates=(template,placeholder,value) => {
-    const pattern=new RegExp(`{{${placeholder}}}`,"gm");
-    return template.replace(pattern,value);
+const replaceTemplates = (template, placeholder, value) => {
+  const pattern = new RegExp(`{{${placeholder}}}`, "gm");
+  return template.replace(pattern, value);
 };
 
-module.exports=generateHTML;
+module.exports = generateHTML;
